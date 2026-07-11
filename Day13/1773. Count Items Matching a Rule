@@ -1,0 +1,23 @@
+class Solution {
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+        int count=0;
+        int val=0;
+           if(ruleKey.equals("color")){
+                val=1;
+            }
+            else if(ruleKey.equals("type")){
+                val=0;
+            }
+            else{
+                val=2;
+            }
+        for(int i=0;i<items.size();i++){
+            //ArrayList<String> arr = new ArrayList<>();
+            //arr = items.get(i).clone();
+            if(items.get(i).get(val).equals(ruleValue)){
+                count++;
+            }
+        }
+        return count;
+    }
+}
