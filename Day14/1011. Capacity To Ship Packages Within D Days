@@ -1,0 +1,31 @@
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        int left = 0,right=0;
+        for(int i=0;i<weights.length;i++){
+            left = Math.max(left,weights[i]);
+            right = right+weights[i];
+        }
+        while(left<right){
+            int mid = left+(right-left)/2;
+            if(canship(mid,weights,days)){
+                right = mid;
+            }
+            else{
+                left = mid+1;
+            }
+        }
+        return left;
+    }
+    public static boolean canship(int mid,int [] weights,int days){
+        int rd = 1;
+        int cap=0;
+        for(int i=0;i<weights.length;i++){
+            if(cap+weights[i]>mid){
+                rd++;
+                cap=0;
+            }
+            cap =cap+weights[i];
+        }
+        return rd<=days;
+    }
+}
