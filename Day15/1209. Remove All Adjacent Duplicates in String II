@@ -1,0 +1,35 @@
+class help{
+    char ch;
+    int val;
+    help(char ch,int val){
+        this.ch = ch;
+        this.val = val;
+    }
+}
+class Solution {
+    public String removeDuplicates(String s, int k) {
+        Stack<help> st = new Stack<>();
+        for(char ab:s.toCharArray()){
+            if(!st.isEmpty()&&st.peek().ch==ab){
+                st.peek().val++;
+                if(st.peek().val==k){
+                    st.pop();
+                }
+            }
+            else{
+                st.push(new help(ab,1));
+            }
+
+        }
+        StringBuilder sb = new StringBuilder();
+        while(!st.isEmpty()){
+            int ans = st.peek().val;
+            char res = st.peek().ch;
+            for(int i =0;i<ans;i++){
+                sb.append(res);
+            }
+            st.pop();
+        }
+        return sb.reverse().toString();
+    }
+}
